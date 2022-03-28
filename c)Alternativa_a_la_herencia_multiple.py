@@ -7,17 +7,10 @@ class Pared:
         self.ventanas.append(ventana)
 
 class Ventana:
-    def __init__(self, pared, superficie, proteccion = True):
+    def __init__(self, pared, superficie):
         self.pared = pared
         self.superficie = superficie
         self.pared.añadir_ventanas(self)
-        self.proteccion = proteccion
-
-    def comprobar_seguridad(self):
-        if self.protecccion:
-            print('La ventana es segura')
-        else:
-            print('La ventana no es segura')
 
 class Casa:
     def __init__(self, paredes):
@@ -58,12 +51,33 @@ class ParedCortina(Pared):
     def __init__(self, orientacion, superficie):
         super().__init__(orientacion)
         self.orientacion = orientacion
-        self.ventanas.append(Ventana(self, superficie))
+        Ventana(self, superficie)
 
 
-
-casa.paredes[2] = ParedCortina('Sur', 10)
+casa.paredes[2] = ParedCortina('SUR', 10)
 print(casa.superficie_acristalada())
+
+## ENUNCIADO 3
+
+class Ventana_regulada:
+    def __init__(self, pared, superficie, proteccion):
+        self.pared = pared
+        self.superficie = superficie
+        self.pared.añadir_ventanas(self)
+
+        if proteccion is None:
+            raise Exception('Necesitas proteccion')
+        else:
+            self.proteccion = proteccion
+
+# ventana_norte = Ventana_regulada(pared_norte, 0.5)
+
+# ventana_norte = Ventana_regulada(pared_norte, 0.5, None)
+
+ventana_norte = Ventana_regulada(pared_norte, 0.5, 'Persiana')
+print(casa.superficie_acristalada())
+
+
 
 
 
